@@ -17,6 +17,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css";
+import ProductScreen from "./screens/ProductScreen";
 
 // Intiate the Router
 // Set Home Screen as the default Route.
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/product/:id" element={<ProductScreen />} />
     </Route>
   )
 );
