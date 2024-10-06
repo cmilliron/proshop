@@ -9,11 +9,14 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "author": "Cody Milliron",
   "license": "MIT",
   "devDependencies": {
+    "colors": "^1.4.0",
     "concurrently": "^9.0.1",
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.7"

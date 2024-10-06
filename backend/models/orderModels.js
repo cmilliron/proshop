@@ -25,9 +25,11 @@ const orderSchema = mongoose.Schema(
           type: Number,
           required: true,
         },
-        product: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "Product",
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Product",
+        },
       },
     ],
     shippingAddress: {
