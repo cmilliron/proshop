@@ -11,7 +11,7 @@ export const authUser = asyncHandler(async (req, res) => {
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
-export const registerUser = asyncHanderler(async (req, res) => {
+export const registerUser = asyncHandler(async (req, res) => {
   res.send("register user");
 });
 
@@ -25,7 +25,7 @@ export const logoutUser = (req, res) => {
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private
-export const getUserProfile = async(async (req, res) => {
+export const getUserProfile = asyncHandler(async (req, res) => {
   res.send("get user profile");
 });
 
