@@ -25,10 +25,18 @@ const cartSlice = createSlice({
         // If not eists, add new item ot cartItems
         state.cartItems = [...state.cartItems, item];
       }
+      // Class says to have return updateCart(state);
+      return updateCart(state);
+    },
+    removeFromCart: (state, action) => {
+      // Filter out the item ot remove from the cart
+      state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
+
+      // Update the prices and save to storage
       return updateCart(state);
     },
   },
 });
 
 export default cartSlice.reducer;
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
