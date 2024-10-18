@@ -22,6 +22,7 @@ import "./assets/styles/index.css";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreens";
 
 // Intiate the Router
 // Set Home Screen as the default Route.
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
       <Route path="/products/:id" element={<ProductScreen />} />
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
     </Route>
   )
 );
