@@ -19,10 +19,16 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css";
+// Public Screens
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreens";
+
+// Private Screens
+import PrivateRoute from "./components/PrivateRoute";
+import ShippingScreen from "./screens/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen";
 
 // Intiate the Router
 // Set Home Screen as the default Route.
@@ -34,6 +40,14 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
+
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/shipping" element={<ShippingScreen />} />
+      </Route>
+
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/payment" element={<PaymentScreen />} />
+      </Route>
     </Route>
   )
 );
