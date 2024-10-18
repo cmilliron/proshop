@@ -19,7 +19,7 @@ const resetDatabase = async () => {
 
 const importData = async () => {
   try {
-    resetDatabase();
+    await resetDatabase();
 
     const createdUsers = await User.insertMany(users);
     console.log(createdUsers);
