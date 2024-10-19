@@ -29,6 +29,7 @@ import RegisterScreen from "./screens/RegisterScreens";
 import PrivateRoute from "./components/PrivateRoute";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 
 // Intiate the Router
 // Set Home Screen as the default Route.
@@ -47,6 +48,10 @@ const router = createBrowserRouter(
 
       <Route path="" element={<PrivateRoute />}>
         <Route path="/payment" element={<PaymentScreen />} />
+      </Route>
+
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/placeorder" element={<PlaceOrderScreen />} />
       </Route>
     </Route>
   )

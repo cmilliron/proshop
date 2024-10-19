@@ -21,21 +21,21 @@ const addOrderItems = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("No ordert items");
   } else {
-    const order = new Order({
-      orderItems: orderItems.map((x) => ({
-        ...x,
-        product: x._id,
-        _id: undefined,
-      })),
-      user: req.user._id,
-      shippingAddress,
-      paymentMethod,
-      itemsPrice,
-      taxPrice,
-      shippingPrice,
-      totalPrice,
-    });
   }
+  const order = new Order({
+    orderItems: orderItems.map((x) => ({
+      ...x,
+      product: x._id,
+      _id: undefined,
+    })),
+    user: req.user._id,
+    shippingAddress,
+    paymentMethod,
+    itemsPrice,
+    taxPrice,
+    shippingPrice,
+    totalPrice,
+  });
 
   const createdOrder = await order.save();
 
@@ -46,14 +46,24 @@ const addOrderItems = asyncHandler(async (req, res) => {
 // @route   GET /api/orders/myorders
 // @access  Private
 const getMyOrders = asyncHandler(async (req, res) => {
-  res.send("get my orders");
+  const orders = await Order.find({ user: req.user._id });
+  res.json(orders);
 });
 
 // @desc    Get order by ID
 // @route   GET /api/orders/:id
 // @access  Private
 const getOrderById = asyncHandler(async (req, res) => {
-  res.send("Get order by id");
+  const order = await Order.findById(req.params.id).populate(
+    "user",
+    "name email"
+  );
+  if (order) {
+    res.json(order);
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
 });
 
 // @desc    Update order to paid
