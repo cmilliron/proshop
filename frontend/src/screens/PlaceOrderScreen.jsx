@@ -101,7 +101,7 @@ function PlaceOrderScreen() {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        {/* Summary column */}
+
         <Col md={4}>
           <Card>
             <ListGroup variant="flush">
