@@ -98,15 +98,16 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 export const updateUserProfile = asyncHandler(async (req, res) => {
-  console.log("** in updateUserProfile **");
+  console.log("** in updateUserProfile  1 **");
   const user = await User.findById(req.user._id);
-
+  console.log(user);
+  console.log(req.body.name, req.body.email, req.body.password);
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
 
     if (req.body.password) {
-      user.password = req.password;
+      user.password = req.body.password;
     }
 
     const updatedUser = await user.save();

@@ -26,6 +26,7 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 // Styles
 import "./assets/styles/bootstrap.custom.css";
@@ -56,6 +57,10 @@ const router = createBrowserRouter(
 
       <Route path="" element={<PrivateRoute />}>
         <Route path="/order/:id" element={<OrderScreen />} />
+      </Route>
+
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/profile" element={<ProfileScreen />} />
       </Route>
     </Route>
   )
