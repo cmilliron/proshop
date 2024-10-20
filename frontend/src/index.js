@@ -8,18 +8,13 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-
-import HomeScreen from "./screens/HomeScreen";
+import reportWebVitals from "./reportWebVitals";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./index.css";
-
-import "./assets/styles/bootstrap.custom.css";
-import "./assets/styles/index.css";
 // Public Screens
+import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
@@ -30,6 +25,11 @@ import PrivateRoute from "./components/PrivateRoute";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
+
+// Styles
+import "./assets/styles/bootstrap.custom.css";
+import "./assets/styles/index.css";
 
 // Intiate the Router
 // Set Home Screen as the default Route.
@@ -53,6 +53,10 @@ const router = createBrowserRouter(
       <Route path="" element={<PrivateRoute />}>
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
       </Route>
+
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/order/:id" element={<OrderScreen />} />
+      </Route>
     </Route>
   )
 );
@@ -61,7 +65,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PayPalScriptProvider>
+        <RouterProvider router={router} />
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>
 );
