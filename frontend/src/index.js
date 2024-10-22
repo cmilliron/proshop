@@ -31,6 +31,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 // Private Admin Screens
 import AdminRoute from "./components/AdminRoute";
 import OrderListScreen from "./screens/admin/OrderListScreen";
+import ProductListScreen from "./screens/admin/ProductListScreen";
 
 // Styles
 import "./assets/styles/bootstrap.custom.css";
@@ -69,6 +70,10 @@ const router = createBrowserRouter(
 
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/orderlist" element={<OrderListScreen />} />
+      </Route>
+
+      <Route path="" element={<AdminRoute />}>
+        <Route path="/admin/productList" element={<ProductListScreen />} />
       </Route>
     </Route>
   )
