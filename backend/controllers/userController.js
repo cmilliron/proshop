@@ -4,6 +4,11 @@ import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 // import jwt from "jsonwebtoken";
 
+function throwError(code, message) {
+  res.status(code);
+  throw new Error(message);
+}
+
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
 // @access  Public
@@ -125,25 +130,65 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users
 // @access  Private/Admin
 export const getUsers = asyncHandler(async (req, res) => {
-  res.send("get users");
+  const users = await User.find({});
+  res.json(users);
 });
 
 // @desc    Delete User
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
 export const deleteUser = asyncHandler(async (req, res) => {
-  res.send("delete users");
+  const userId = req.params.id;
+  const user = await User.findById(userId);
+
+  if (user) {
+    if (user.isAdmin) {
+      res.status(400);
+      throw new Error("Can not delete admin user");
+    }
+    await User.deleteUser({ _id: userId });
+    res.json({ message: "User Removed" });
+  } else {
+    res.status(404);
+    throw new Error("User not found.");
+  }
 });
 
 // @desc    Get user by ID
 // @route   GET /api/users/:id
 // @access  Private/Admin
 export const getUserById = asyncHandler(async (req, res) => {
-  res.send("get user by id");
+  const userId = req.params.id;
+  const user = await User.findById(userId).select("-password");
+
+  if (user) {
+    res.json(user);
+  } else {
+    throwError(404, "User not found");
+  }
 });
+
 // @desc    Update User
 // @route   PUT /api/users/:id
 // @access  Private/Admin
 export const updateUser = asyncHandler(async (req, res) => {
-  res.send("Update user");
+  const userId = req.params.id;
+  const user = await User.findById(userId).select("-password");
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = Boolean(req.body.isAdmin);
+
+    const updatedUser = user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      password: updatedUser.password,
+    });
+  } else {
+    throwError(404, "User not found");
+  }
 });
