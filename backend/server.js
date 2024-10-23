@@ -14,13 +14,12 @@ import uploadRoutes from "./routes/uploadRoutes.js";
 dotenv.config();
 connectDB();
 
-const __dirname = path.resolve();
-app.use("/uplaods", express.static(path.join(__dirname, "/uploads")));
-
 const port = process.env.PORT || 5500;
 
 const app = express();
 
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
