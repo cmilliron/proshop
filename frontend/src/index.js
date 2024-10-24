@@ -33,6 +33,7 @@ import AdminRoute from "./components/AdminRoute";
 import OrderListScreen from "./screens/admin/OrderListScreen";
 import ProductListScreen from "./screens/admin/ProductListScreen";
 import ProductEditScreen from "./screens/admin/ProductEditScreen";
+import UserListScreen from "./screens/admin/UserListScreen";
 
 // Styles
 import "./assets/styles/bootstrap.custom.css";
@@ -79,6 +80,10 @@ const router = createBrowserRouter(
 
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/product/:id/edit" element={<ProductEditScreen />} />
+      </Route>
+
+      <Route path="" element={<AdminRoute />}>
+        <Route path="/admin/userList" element={<UserListScreen />} />
       </Route>
     </Route>
   )

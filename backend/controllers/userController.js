@@ -146,7 +146,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error("Can not delete admin user");
     }
-    await User.deleteUser({ _id: userId });
+    await User.deleteOne({ _id: userId });
     res.json({ message: "User Removed" });
   } else {
     res.status(404);
@@ -180,13 +180,13 @@ export const updateUser = asyncHandler(async (req, res) => {
     user.email = req.body.email || user.email;
     user.isAdmin = Boolean(req.body.isAdmin);
 
-    const updatedUser = user.save();
+    const updatedUser = await user.save();
 
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-      password: updatedUser.password,
+      isAdmin: updatedUser.isAdmin,
     });
   } else {
     throwError(404, "User not found");
