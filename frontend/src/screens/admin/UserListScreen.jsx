@@ -38,14 +38,18 @@ function UserListScreen() {
       ) : (
         <Table striped bordered hover responsive className="table-sm">
           <thead>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>ADMIN</th>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>ADMIN</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
+                <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>
                   <a href={`mailto:${user.email}`}>{user.email}</a>{" "}
