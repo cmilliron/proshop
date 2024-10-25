@@ -1,5 +1,7 @@
 node_modules/
 .env
+upload/*png
+upload/*jpg
 
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
@@ -14,6 +16,7 @@ frontend/node_modules
 
 # production
 /build
+frontend/build/
 
 # misc
 .DS_Store
