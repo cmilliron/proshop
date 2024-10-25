@@ -164,7 +164,8 @@ export const getUserById = asyncHandler(async (req, res) => {
   if (user) {
     res.json(user);
   } else {
-    throwError(404, "User not found");
+    res.status(404);
+    throw new Error("User not found");
   }
 });
 
@@ -189,6 +190,7 @@ export const updateUser = asyncHandler(async (req, res) => {
       isAdmin: updatedUser.isAdmin,
     });
   } else {
-    throwError(404, "User not found");
+    res.status(404);
+    throw new Error("User not found");
   }
 });
