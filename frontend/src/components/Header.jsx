@@ -8,6 +8,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useLogoutMutation } from "../slices/userApiSlice";
 import { logout } from "../slices/authSlice";
 import { useNavigate, Link } from "react-router-dom";
+import SearchBox from "./SearchBox";
 
 import logo from "../assets/logo.png";
 
@@ -39,10 +40,10 @@ function Header() {
               <img src={logo} alt="Proshop" /> Proshop
             </Navbar.Brand>
           </LinkContainer>
-
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+              <SearchBox />
               <LinkContainer to="/cart">
                 <Nav.Link className="me-1">
                   <FaShoppingCart className="me-1" /> Cart

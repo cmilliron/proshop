@@ -8,26 +8,26 @@ import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
+import { Link } from "react-router-dom";
 
 // // import products from "../assets/products";
 
 function HomeScreen() {
-  const { pageNumber } = useParams();
-  const { data, isLoading, error } = useGetProductsQuery({ pageNumber });
-  //   const [products, setProducts] = useState([]);
-
-  //   useEffect(() => {
-  //     const fetchProducts = async () => {
-  //       const { data } = await axios.get("/api/products");
-  //       console.log(data);
-  //       setProducts(data);
-  //     };
-  //     fetchProducts();
-  //     console.log(products);
-  //   }, []);
+  const { pageNumber, keyword } = useParams();
+  const { data, isLoading, error } = useGetProductsQuery({
+    pageNumber,
+    keyword,
+  });
 
   return (
     <>
+      {!keyword ? (
+        <h1>HOlder for carosel</h1>
+      ) : (
+        <Link to="/" className="btn btn-light mb-2">
+          Go Back
+        </Link>
+      )}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -44,7 +44,11 @@ function HomeScreen() {
               </Col>
             ))}
           </Row>
-          <Paginate pages={data.pages} page={data.page} />
+          <Paginate
+            pages={data.pages}
+            page={data.page}
+            keyword={keyword ? keyword : ""}
+          />
         </>
       )}
     </>
