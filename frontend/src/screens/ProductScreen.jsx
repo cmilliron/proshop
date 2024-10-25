@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap";
 import Rating from "../components/Rating";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 
 // Needed for cart funcationality
 import { useState } from "react";
@@ -81,6 +82,7 @@ function ProductScreen() {
         <div>{error?.data.maessage || error.error}</div>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
