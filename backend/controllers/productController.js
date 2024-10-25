@@ -1,19 +1,18 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import Product from "../models/productModel.js";
-// import { throwError } from "../utils/throwError.js";
-
-export function throwError(code, message) {
-  res.status(code);
-  throw new Error(message);
-}
 
 // @desc    Fetch all products
 // @route   GET /api/proudcts
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({});
+  const pageSize = 4;
+  const currentPage = Number(req.query.pageNumber) || 1;
+  const count = await Product.countDocuments();
+  const products = await Product.find()
+    .limit(pageSize)
+    .skip(pageSize * (currentPage - 1));
 
-  res.json(products);
+  res.json({ products, currentPage, pages: Math.ceil(count / pageSize) });
 });
 
 // @desc    Fetch single product
@@ -109,6 +108,7 @@ const createProductReview = asyncHandler(async (req, res) => {
     );
 
     if (alreadyReviewed) {
+      console.log("already reviewed");
       res.status(404);
       throw new Error("Product already reviewed");
     }

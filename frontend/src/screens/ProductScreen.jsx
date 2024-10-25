@@ -61,7 +61,8 @@ function ProductScreen() {
         productId,
         rating,
         comment,
-      });
+      }).unwrap();
+
       refetch();
       toast.success("Review created successfully");
     } catch (error) {
