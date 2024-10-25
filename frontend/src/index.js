@@ -58,37 +58,20 @@ const router = createBrowserRouter(
 
       <Route path="" element={<PrivateRoute />}>
         <Route path="/payment" element={<PaymentScreen />} />
-      </Route>
-
-      <Route path="" element={<PrivateRoute />}>
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
-      </Route>
-
-      <Route path="" element={<PrivateRoute />}>
         <Route path="/order/:id" element={<OrderScreen />} />
-      </Route>
-
-      <Route path="" element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfileScreen />} />
       </Route>
 
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/orderlist" element={<OrderListScreen />} />
-      </Route>
-
-      <Route path="" element={<AdminRoute />}>
         <Route path="/admin/productList" element={<ProductListScreen />} />
-      </Route>
-
-      <Route path="" element={<AdminRoute />}>
+        <Route
+          path="/admin/productList/:pageNumber"
+          element={<ProductListScreen />}
+        />
         <Route path="/admin/product/:id/edit" element={<ProductEditScreen />} />
-      </Route>
-
-      <Route path="" element={<AdminRoute />}>
         <Route path="/admin/userList" element={<UserListScreen />} />
-      </Route>
-
-      <Route path="" element={<AdminRoute />}>
         <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
       </Route>
     </Route>
