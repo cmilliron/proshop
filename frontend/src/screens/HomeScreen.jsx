@@ -9,6 +9,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
 import { Link } from "react-router-dom";
+import ProductCarousel from "../components/ProductCarousel";
 
 // // import products from "../assets/products";
 
@@ -22,7 +23,7 @@ function HomeScreen() {
   return (
     <>
       {!keyword ? (
-        <h1>HOlder for carosel</h1>
+        <ProductCarousel />
       ) : (
         <Link to="/" className="btn btn-light mb-2">
           Go Back
