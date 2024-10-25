@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   const dbLink =
-    process.env.NODE_ENV === "develpment"
+    process.env.NODE_ENV === "development"
       ? "mongodb://localhost:27017/proshop"
       : process.env.MONGO_URI;
   try {
